@@ -2,52 +2,44 @@
 .hero-banner {
     position: relative;
     width: 100%;
-    height: 100vh; /* Makes it fill the entire viewport */
+    height: 100vh; /* Makes the image cover the full viewport height */
+    background: url('../images/banner.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: url('../images/banner.jpg') no-repeat center center/cover;
 }
 
-/* Ensures the Image Covers the Whole Screen */
-.hero-banner::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* Slight dark overlay */
-}
-
-/* Text Styling */
-.hero-banner .overlay {
-    position: relative;
+/* Ensures Text is Centered */
+.hero-content {
     color: white;
     z-index: 2;
     max-width: 80%;
+    background: rgba(0, 0, 0, 0.5); /* Slight dark background for readability */
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.hero-banner h1 {
+/* Text Styling */
+.hero-content h1 {
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.hero-banner p {
+.hero-content p {
     font-size: 1.2rem;
 }
 
-/* Responsive Design for Smaller Screens */
+/* Responsive Design for Mobile */
 @media (max-width: 768px) {
     .hero-banner {
-        height: 70vh; /* Reduce height for small screens */
+        height: 70vh; /* Reduce height for smaller screens */
     }
-    .hero-banner h1 {
+    .hero-content h1 {
         font-size: 2rem;
     }
-    .hero-banner p {
+    .hero-content p {
         font-size: 1rem;
     }
 }
