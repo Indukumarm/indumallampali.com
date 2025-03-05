@@ -1,18 +1,42 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
-    color: #333;
+/* Hero Banner Styling */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
 }
-header {
-    background: #008CBA;
-    padding: 20px;
+
+.hero-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(70%);
+}
+
+.hero-banner .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
     color: white;
 }
-section {
-    margin: 20px;
-    padding: 20px;
-    background: white;
-    display: inline-block;
-    border-radius: 10px;
+
+.hero-banner h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.hero-banner p {
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-banner h1 {
+        font-size: 2rem;
+    }
+    .hero-banner p {
+        font-size: 1rem;
+    }
 }
