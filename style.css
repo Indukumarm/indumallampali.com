@@ -7,7 +7,7 @@ body {
     padding: 0;
 }
 
-/* === Hero Banner Section === */
+/* === Hero Banner Section (Corrected for Full Background Image) === */
 .hero-banner {
     position: relative;
     width: 100%;
@@ -52,7 +52,7 @@ body {
 
 /* === Navbar Styling === */
 .navbar {
-    background-color: #2C3E50; /* Dark Blue Navbar */
+    background-color: #2C3E50;
 }
 
 .navbar .navbar-brand {
@@ -65,25 +65,7 @@ body {
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-    color: #E74C3C; /* Red Hover Effect */
-}
-
-/* === Buttons === */
-.btn-danger {
-    background-color: #E74C3C;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 5px;
-    font-size: 1.1rem;
-}
-
-.btn-danger:hover {
-    background-color: #C0392B;
-}
-
-/* === Section Styling === */
-.container {
-    padding: 50px 0;
+    color: #E74C3C;
 }
 
 /* === Footer Styling === */
