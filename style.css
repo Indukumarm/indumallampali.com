@@ -1,8 +1,15 @@
-/* Full-Width Hero Banner */
+/* === General Styles === */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F4F4F4;
+    color: #333;
+}
+
+/* === Full-Width Hero Banner === */
 .hero-banner {
     position: relative;
     width: 100%;
-    height: 100vh; /* Makes the image cover the full viewport height */
+    height: 100vh; /* Full viewport height */
     background: url('../images/banner.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
@@ -10,36 +17,99 @@
     text-align: center;
 }
 
-/* Ensures Text is Centered */
-.hero-content {
+/* Dark Overlay for Readability */
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+}
+
+/* Hero Text (Centered Over the Image) */
+.hero-overlay {
+    position: relative;
     color: white;
     z-index: 2;
     max-width: 80%;
-    background: rgba(0, 0, 0, 0.5); /* Slight dark background for readability */
     padding: 20px;
-    border-radius: 10px;
 }
 
-/* Text Styling */
-.hero-content h1 {
+/* Hero Text Styling */
+.hero-overlay h1 {
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.hero-content p {
+.hero-overlay p {
     font-size: 1.2rem;
 }
 
-/* Responsive Design for Mobile */
+/* === Navbar Styling === */
+.navbar {
+    background-color: #2C3E50; /* Dark Blue Navbar */
+}
+
+.navbar .navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: white;
+    transition: 0.3s;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #E74C3C; /* Red Hover Effect */
+}
+
+/* === Buttons === */
+.btn-danger {
+    background-color: #E74C3C;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+.btn-danger:hover {
+    background-color: #C0392B;
+}
+
+/* === Section Styling === */
+.container {
+    padding: 50px 0;
+}
+
+/* === Footer Styling === */
+footer {
+    background-color: #2C3E50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* === Mobile Optimization === */
 @media (max-width: 768px) {
     .hero-banner {
-        height: 70vh; /* Reduce height for smaller screens */
+        height: 70vh;
     }
-    .hero-content h1 {
+    .hero-overlay h1 {
         font-size: 2rem;
     }
-    .hero-content p {
+    .hero-overlay p {
         font-size: 1rem;
     }
 }
