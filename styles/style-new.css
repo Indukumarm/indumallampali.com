@@ -50,7 +50,13 @@ body {
 }
 /* === Navbar Styling === */
 .navbar {
-    background-color: #2C3E50;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(44, 62, 80, 0.7); /* Dark Transparent Effect */
+    transition: background 0.3s ease-in-out;
+    z-index: 1000;
 }
 
 .navbar .navbar-brand {
@@ -64,6 +70,11 @@ body {
 
 .navbar-nav .nav-item .nav-link:hover {
     color: #E74C3C;
+}
+
+/* Change Navbar Color on Scroll */
+.navbar.scrolled {
+    background: #2C3E50 !important; /* Solid Color When Scrolling */
 }
 
 /* === Footer Styling === */
