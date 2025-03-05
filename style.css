@@ -1,18 +1,23 @@
-/* Hero Banner Styling */
+/* Full-Width Hero Banner */
 .hero-banner {
     position: relative;
     width: 100%;
-    height: 90vh;
-    overflow: hidden;
+    height: 90vh; /* Adjusts to 90% of the viewport height */
+    background: url('../images/banner.jpg') no-repeat center center/cover;
 }
 
-.hero-banner img {
+/* Dark Overlay on the Image */
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    filter: brightness(70%);
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
 }
 
+/* Centering Text in Hero Banner */
 .hero-banner .overlay {
     position: absolute;
     top: 50%;
@@ -20,6 +25,7 @@
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
+    z-index: 2; /* Ensures text is above the overlay */
 }
 
 .hero-banner h1 {
