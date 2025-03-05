@@ -91,8 +91,9 @@ body {
 }
 
 .container img {
-    border: 5px solid #2C3E50;
-    border-radius: 10px;
+    border-radius: 10px; /* Adds slight rounding but keeps it rectangular */
+    max-width: 100%;
+    height: auto;
 }
 
 .shadow-lg {
