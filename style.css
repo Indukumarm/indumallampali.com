@@ -2,11 +2,15 @@
 .hero-banner {
     position: relative;
     width: 100%;
-    height: 90vh; /* Adjusts to 90% of the viewport height */
+    height: 100vh; /* Makes it fill the entire viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     background: url('../images/banner.jpg') no-repeat center center/cover;
 }
 
-/* Dark Overlay on the Image */
+/* Ensures the Image Covers the Whole Screen */
 .hero-banner::before {
     content: "";
     position: absolute;
@@ -14,31 +18,32 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+    background: rgba(0, 0, 0, 0.3); /* Slight dark overlay */
 }
 
-/* Centering Text in Hero Banner */
+/* Text Styling */
 .hero-banner .overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    position: relative;
     color: white;
-    z-index: 2; /* Ensures text is above the overlay */
+    z-index: 2;
+    max-width: 80%;
 }
 
 .hero-banner h1 {
     font-size: 3rem;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .hero-banner p {
     font-size: 1.2rem;
 }
 
-/* Responsive Design */
+/* Responsive Design for Smaller Screens */
 @media (max-width: 768px) {
+    .hero-banner {
+        height: 70vh; /* Reduce height for small screens */
+    }
     .hero-banner h1 {
         font-size: 2rem;
     }
