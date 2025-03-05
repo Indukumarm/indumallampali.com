@@ -48,6 +48,80 @@ body {
 .hero-content p {
     font-size: 1.2rem;
 }
+/* === Global Styles (For entire website) === */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F4F4F4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Navbar Styling === */
+.navbar {
+    background-color: #2C3E50;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar .navbar-brand {
+    font-weight: bold;
+}
+
+/* === Hero Section Styling (Homepage Banner) === */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../images/banner.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+/* === About Me Page Styling === */
+.container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.container img {
+    border: 5px solid #2C3E50;
+    border-radius: 10px;
+}
+
+.shadow-lg {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* === Contact Page Styling === */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.btn-dark, .btn-info {
+    margin: 10px;
+}
+
+/* === Back to Home Button Styling === */
+.text-center .btn-secondary {
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+/* === Footer Styling === */
+footer {
+    background-color: #2C3E50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
 /* === Navbar Styling === */
 .navbar {
     position: fixed;
