@@ -54,11 +54,21 @@ async function loadReviews() {
                 oldList.appendChild(reviewItem);
             }
         });
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
+    } 
+    
+// ✅ Step #2: Sanitize Input to Prevent XSS Attacks
+function sanitizeInput(str) {
+    return str.replace(/</g, "&lt;").replace(/>/g, "&gt;"); // Prevents XSS injection
 }
 
+// ✅ Step #3: Secure Dynamic Content
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("[data-secure]").forEach(el => {
+        el.innerHTML = sanitizeInput(el.innerHTML);
+    });
+});
+
+// Call Function to Load Reviews
 loadReviews();
 
 // Call the function to load reviews when the page loads
