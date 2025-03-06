@@ -9,59 +9,68 @@ window.addEventListener("scroll", function () {
 });
 
 // Function to Load Movie Reviews from Google Sheets
+// Function to Fetch Reviews Securely from Google Sheets
 async function loadReviews() {
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIkWsryajtIMUlOfuNE_F94R_F6TTtyfs_0vrkQpp_id0PQoA4UPG894fzgC3Oklfua5aiMI8IPLE5/pub?output=csv"; // Replace with actual CSV link
+    const API_KEY = "AIzaSyDeMlopwgQH2z604m1LTDZWC8gdw6qYg80"; // Replace with actual API key
+    const SHEET_ID = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIkWsryajtIMUlOfuNE_F94R_F6TTtyfs_0vrkQpp_id0PQoA4UPG894fzgC3Oklfua5aiMI8IPLE5/pub?output=csv"; // Replace with actual Google Sheet ID
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Sheet1?key=${API_KEY}`;
 
     try {
-        const response = await fetch(sheetURL);
-        const text = await response.text();
-        
-        console.log("Fetched Data from Google Sheets:", text); // Debugging Step
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log("Fetched Secure Data:", data);
 
-        let rows = text.split("\n").map(row => row.split(","));
-        console.log("Parsed Rows Before Sorting:", rows); // Debugging Step
-
-        const newList = document.getElementById("new-reviews-list");
-        const oldList = document.getElementById("old-reviews-list");
-        newList.innerHTML = "";  
-        oldList.innerHTML = "";  
-
-        rows.shift(); // Remove header row
-
-        // Convert MM/DD/YYYY format to Date object for sorting
-        rows.sort((a, b) => {
-            const dateA = new Date(a[3].trim()); 
-            const dateB = new Date(b[3].trim());
-            return dateB - dateA;
-        });
-
-        console.log("Parsed Rows After Sorting:", rows); // Debugging Step
-
-        rows.forEach((row, index) => {
-            const [title, content, type, date] = row;
-
-            console.log(`Processing: ${title} - ${date}`); // Debugging Step
-
-            const reviewItem = document.createElement("li");
-            reviewItem.className = "list-group-item review-item";
-            reviewItem.innerHTML = `
-                <a href="review.html?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}" class="review-title">${title}</a>
-            `;
-
-            if (index < 2) {  
-                newList.appendChild(reviewItem);
-            } else {  
-                oldList.appendChild(reviewItem);
-            }
-        });
-    } 
-    
-// ✅ Step #2: Sanitize Input to Prevent XSS Attacks
-function sanitizeInput(str) {
-    return str.replace(/</g, "&lt;").replace(/>/g, "&gt;"); // Prevents XSS injection
+        // Process & Display Data
+        displayReviews(data.values);
+    } catch (error) {
+        console.error("Error fetching Google Sheets data:", error);
+    }
 }
 
-// ✅ Step #3: Secure Dynamic Content
+// Function to Display Reviews Dynamically
+function displayReviews(reviews) {
+    const newFlashingDiv = document.getElementById("newFlashing");
+    const olderReviewsDiv = document.getElementById("olderReviews");
+    newFlashingDiv.innerHTML = "";
+    olderReviewsDiv.innerHTML = "";
+
+    // Get today's date in MM/DD/YYYY format
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    reviews.forEach((review, index) => {
+        if (index === 0) return; // Skip headers row
+
+        const [title, content, type, date] = review;
+        const reviewDate = new Date(date);
+        reviewDate.setHours(0, 0, 0, 0);
+
+        // ✅ Only Sanitize Display Text, Not URLs
+        const safeTitle = sanitizeInput(title);
+        const safeContent = sanitizeInput(content);
+
+        const link = document.createElement("a");
+        link.href = `review.html?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}`;
+        link.textContent = safeTitle;
+        link.classList.add("review-link");
+
+        const paragraph = document.createElement("p");
+        paragraph.appendChild(link);
+
+        if (reviewDate >= today) {
+            newFlashingDiv.appendChild(paragraph);
+        } else {
+            olderReviewsDiv.appendChild(paragraph);
+        }
+    });
+}
+
+// ✅ Fix: Apply Sanitization Only to Display Text (Not URLs)
+function sanitizeInput(str) {
+    return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// ✅ Keep Dynamic Content Secure
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("[data-secure]").forEach(el => {
         el.innerHTML = sanitizeInput(el.innerHTML);
