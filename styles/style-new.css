@@ -187,6 +187,12 @@ footer a:hover {
     opacity: 0.8;
     transition: 0.3s ease-in-out;
 }
+/* === Entertainment Page Button Styling === */
+.container .row .btn-lg {
+    padding: 15px;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
 /* === Mobile Optimization === */
 @media (max-width: 768px) {
     .hero-banner {
