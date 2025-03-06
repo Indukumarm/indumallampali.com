@@ -193,6 +193,12 @@ footer a:hover {
     font-size: 1.2rem;
     margin-top: 10px;
 }
+/* === Fix Entertainment Page Button Alignment === */
+.d-flex .btn-lg {
+    min-width: 200px;  /* Ensures both buttons are the same width */
+    padding: 12px 24px; /* Makes buttons evenly padded */
+    font-size: 1.2rem;
+}
 /* === Mobile Optimization === */
 @media (max-width: 768px) {
     .hero-banner {
