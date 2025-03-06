@@ -194,10 +194,11 @@ footer a:hover {
     margin-top: 10px;
 }
 /* === Fix Entertainment Page Button Alignment === */
-.d-flex .btn-lg {
-    min-width: 200px;  /* Ensures both buttons are the same width */
-    padding: 12px 24px; /* Makes buttons evenly padded */
+.custom-btn {
+    width: 220px; /* Ensures both buttons have the same width */
+    padding: 12px 20px; /* Keeps padding consistent */
     font-size: 1.2rem;
+    text-align: center;
 }
 /* === Mobile Optimization === */
 @media (max-width: 768px) {
