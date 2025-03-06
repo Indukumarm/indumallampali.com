@@ -10,7 +10,7 @@ window.addEventListener("scroll", function () {
 
 // Function to Load Movie Reviews from Google Sheets
 async function loadReviews() {
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIkWsryajtIMUlOfuNE_F94R_F6TTtyfs_0vrkQpp_id0PQoA4UPG894fzgC3Oklfua5aiMI8IPLE5/pub?output=csv"; // Replace with your actual CSV link
+    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIkWsryajtIMUlOfuNE_F94R_F6TTtyfs_0vrkQpp_id0PQoA4UPG894fzgC3Oklfua5aiMI8IPLE5/pub?output=csv"; // Replace with actual CSV link
 
     try {
         const response = await fetch(sheetURL);
@@ -28,9 +28,9 @@ async function loadReviews() {
 
         rows.shift(); // Remove header row
 
-        // Convert MM/DD/YYYY format to a Date object for sorting
+        // Convert MM/DD/YYYY format to Date object for sorting
         rows.sort((a, b) => {
-            const dateA = new Date(a[3].trim()); // MM/DD/YYYY is directly readable by JavaScript Date
+            const dateA = new Date(a[3].trim()); 
             const dateB = new Date(b[3].trim());
             return dateB - dateA;
         });
@@ -42,10 +42,17 @@ async function loadReviews() {
 
             console.log(`Processing: ${title} - ${date}`); // Debugging Step
 
-            if (index < 2) {  // Newest two reviews go to "New Flashing"
-                newList.innerHTML += `<li class="list-group-item new-review"><a href="#">${title}</a> - ${content.substring(0, 100)}...</li>`;
-            } else {  // Older reviews go to archive
-                oldList.innerHTML += `<li class="list-group-item old-review"><a href="#">${title}</a> - ${content.substring(0, 100)}...</li>`;
+            const reviewItem = document.createElement("li");
+            reviewItem.className = "list-group-item review-item";
+            reviewItem.innerHTML = `
+                <a href="#" class="review-title" onclick="toggleReview(${index})">${title}</a>
+                <p id="review-${index}" class="review-content" style="display: none;">${content}</p>
+            `;
+
+            if (index < 2) {  
+                newList.appendChild(reviewItem);
+            } else {  
+                oldList.appendChild(reviewItem);
             }
         });
     } catch (error) {
@@ -53,8 +60,13 @@ async function loadReviews() {
     }
 }
 
-loadReviews();
+// Function to toggle full review
+function toggleReview(index) {
+    const reviewContent = document.getElementById(`review-${index}`);
+    reviewContent.style.display = (reviewContent.style.display === "none") ? "block" : "none";
+}
 
+loadReviews();
 
 // Call the function to load reviews when the page loads
 document.addEventListener("DOMContentLoaded", loadReviews);
