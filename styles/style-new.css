@@ -176,7 +176,17 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+/* === Custom Button Styling === */
+.btn-lg {
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px 24px;
+}
 
+.btn-lg:hover {
+    opacity: 0.8;
+    transition: 0.3s ease-in-out;
+}
 /* === Mobile Optimization === */
 @media (max-width: 768px) {
     .hero-banner {
