@@ -8,12 +8,12 @@ window.addEventListener("scroll", function () {
     }
 });
 
-// Function to Load Movie Reviews from Google Sheets
 // Function to Fetch Reviews Securely from Google Sheets
 async function loadReviews() {
     const API_KEY = "AIzaSyDeMlopwgQH2z604m1LTDZWC8gdw6qYg80"; // Replace with actual API key
-    const SHEET_ID = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIkWsryajtIMUlOfuNE_F94R_F6TTtyfs_0vrkQpp_id0PQoA4UPG894fzgC3Oklfua5aiMI8IPLE5/pub?output=csv"; // Replace with actual Google Sheet ID
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Sheet1?key=${API_KEY}`;
+    const SHEET_ID = "1KJ7YITtNG6e1yyqel2U5bjD3LgJwIgkP2tXJ9N6g"; // Replace with actual SHEET ID
+    const SHEET_NAME = "Review"; // Change this if your sheet name is different
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`;
 
     try {
         const response = await fetch(url);
@@ -76,9 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
         el.innerHTML = sanitizeInput(el.innerHTML);
     });
 });
-
-// Call Function to Load Reviews
-loadReviews();
 
 // Call the function to load reviews when the page loads
 document.addEventListener("DOMContentLoaded", loadReviews);
