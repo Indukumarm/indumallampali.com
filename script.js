@@ -45,8 +45,7 @@ async function loadReviews() {
             const reviewItem = document.createElement("li");
             reviewItem.className = "list-group-item review-item";
             reviewItem.innerHTML = `
-                <a href="#" class="review-title" onclick="toggleReview(${index})">${title}</a>
-                <p id="review-${index}" class="review-content" style="display: none;">${content}</p>
+                <a href="review.html?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}" class="review-title">${title}</a>
             `;
 
             if (index < 2) {  
@@ -58,12 +57,6 @@ async function loadReviews() {
     } catch (error) {
         console.error("Error fetching data:", error);
     }
-}
-
-// Function to toggle full review
-function toggleReview(index) {
-    const reviewContent = document.getElementById(`review-${index}`);
-    reviewContent.style.display = (reviewContent.style.display === "none") ? "block" : "none";
 }
 
 loadReviews();
