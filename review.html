@@ -3,38 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Review</title>
+    <title id="page-title">Movie Review</title>
     <link href="styles/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
 
+    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2C3E50;">
         <div class="container">
             <a class="navbar-brand" href="index.html">Indu Mallampali</a>
-            <div class="collapse navbar-collapse">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="movie-reviews.html">Movie Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="entertainment.html">Entertainment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section class="container my-5">
-        <h1 id="review-title" class="text-center"></h1>
-        <p id="review-content" class="text-center"></p>
+    <!-- Movie Review Section -->
+    <section class="container my-5 text-center">
+        <h1 id="review-title"></h1>
+        <p id="review-content" class="lead"></p>
     </section>
 
+    <!-- Footer -->
+    <footer class="text-center text-white py-3" style="background-color: #2C3E50;">
+        <p>© 2024 Indu Mallampali. All Rights Reserved.</p>
+        <a href="about.html" class="text-white">About</a> |
+        <a href="contact.html" class="text-white">Contact</a> |
+        <a href="https://linkedin.com" class="text-white">LinkedIn</a>
+    </footer>
+
+    <!-- JavaScript to Load Review -->
     <script>
         // Get URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const title = urlParams.get('title');
         const content = urlParams.get('content');
 
-        // Set page content dynamically
+        // Update Page Content
         document.getElementById("review-title").textContent = title;
         document.getElementById("review-content").textContent = content;
+        document.getElementById("page-title").textContent = title + " - Movie Review";
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
