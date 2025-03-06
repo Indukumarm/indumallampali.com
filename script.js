@@ -10,7 +10,7 @@ window.addEventListener("scroll", function () {
 
 // Function to Load Movie Reviews from Google Sheets
 async function loadReviews() {
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIkWsryajtIMUlOfuNE_F94R_F6TTtyfs_0vrkQpp_id0PQoA4UPG894fzgC3Oklfua5aiMI8IPLE5/pubhtml"; // Replace with your actual Google Sheet link
+    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSIkWsryajtIMUlOfuNE_F94R_F6TTtyfs_0vrkQpp_id0PQoA4UPG894fzgC3Oklfua5aiMI8IPLE5/pub?output=csv"; // Replace with your actual Google Sheet link
     const response = await fetch(sheetURL);
     const text = await response.text();
     
