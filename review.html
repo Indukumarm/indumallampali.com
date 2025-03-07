@@ -44,29 +44,31 @@
     <!-- JavaScript -->
     <script>
         async function loadReview() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const fileName = urlParams.get('file');
+    const urlParams = new URLSearchParams(window.location.search);
+    const fileName = urlParams.get('file');
 
-            if (!fileName) {
-                document.getElementById("review-content").textContent = "No review selected.";
-                return;
-            }
+    // **Allow Only .txt Files from `reviews/` Folder**
+    if (!fileName || !/^[a-zA-Z0-9-_]+\.txt$/.test(fileName)) {
+        document.getElementById("review-content").textContent = "Invalid review file.";
+        return;
+    }
 
-            // GitHub Raw File URL (Replace with your username & repo)
-            const rawFileUrl = `https://raw.githubusercontent.com/Indukumarm/indumallampali.com/main/reviews/${fileName}`;
+    // GitHub Raw File URL (Replace with your username & repo)
+    const rawFileUrl = `https://raw.githubusercontent.com/Indukumarrr/indumallampali.com/main/reviews/${fileName}`;
 
-            try {
-                const response = await fetch(rawFileUrl);
-                const text = await response.text();
+    try {
+        const response = await fetch(rawFileUrl);
+        if (!response.ok) throw new Error("File not found.");
+        const text = await response.text();
 
-                document.getElementById("review-title").textContent = fileName.replace(".txt", "").replace(/-/g, " ").toUpperCase();
-                document.getElementById("review-content").innerHTML = text.replace(/\n/g, "<br>");
-            } catch (error) {
-                document.getElementById("review-content").textContent = "Error loading review.";
-            }
-        }
+        document.getElementById("review-title").textContent = fileName.replace(".txt", "").replace(/-/g, " ").toUpperCase();
+        document.getElementById("review-content").innerHTML = text.replace(/\n/g, "<br>");
+    } catch (error) {
+        document.getElementById("review-content").textContent = "Error loading review.";
+    }
+}
 
-        document.addEventListener("DOMContentLoaded", loadReview);
+document.addEventListener("DOMContentLoaded", loadReview);
     </script>
 
 </body>
