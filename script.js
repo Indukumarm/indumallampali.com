@@ -8,56 +8,25 @@ window.addEventListener("scroll", function () {
     }
 });
 
-// Function to Fetch Reviews Securely from Google Sheets
+// Function to Load Movie Reviews List
 async function loadReviews() {
-    const API_KEY = "AIzaSyDeMlopwgQH2z604m1LTDZWC8gdw6qYg80"; // Replace with actual API key
-    const SHEET_ID = "1KJ7YITtNG6e1yyqel2U5bjD3LgJwIgkP2tXJ9N6g"; // Replace with actual SHEET ID
-    const SHEET_NAME = "Review"; // Change this if your sheet name is different
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`;
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log("Fetched Secure Data:", data);
-
-        // Process & Display Data
-        displayReviews(data.values);
-    } catch (error) {
-        console.error("Error fetching Google Sheets data:", error);
-    }
-}
-
-// Function to Display Reviews Dynamically
-function displayReviews(reviews) {
+    const reviews = ["inception", "interstellar", "the-matrix"]; // List of available reviews
     const newFlashingDiv = document.getElementById("newFlashing");
     const olderReviewsDiv = document.getElementById("olderReviews");
     newFlashingDiv.innerHTML = "";
     olderReviewsDiv.innerHTML = "";
 
-    // Get today's date in MM/DD/YYYY format
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    reviews.forEach((review, index) => {
-        if (index === 0) return; // Skip headers row
-
-        const [title, content, type, date] = review;
-        const reviewDate = new Date(date);
-        reviewDate.setHours(0, 0, 0, 0);
-
-        // ✅ Only Sanitize Display Text, Not URLs
-        const safeTitle = sanitizeInput(title);
-        const safeContent = sanitizeInput(content);
-
+    reviews.forEach(reviewId => {
         const link = document.createElement("a");
-        link.href = `review.html?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}`;
-        link.textContent = safeTitle;
+        link.href = `review.html?id=${reviewId}`;
+        link.textContent = reviewId.replace("-", " ").toUpperCase(); // Format title nicely
         link.classList.add("review-link");
 
         const paragraph = document.createElement("p");
         paragraph.appendChild(link);
 
-        if (reviewDate >= today) {
+        // Assume first two are new, others are old
+        if (newFlashingDiv.children.length < 2) {
             newFlashingDiv.appendChild(paragraph);
         } else {
             olderReviewsDiv.appendChild(paragraph);
@@ -65,17 +34,36 @@ function displayReviews(reviews) {
     });
 }
 
-// ✅ Fix: Apply Sanitization Only to Display Text (Not URLs)
-function sanitizeInput(str) {
-    return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+// Function to Load Full Review in review.html
+async function loadReview() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const reviewId = urlParams.get("id");
+
+    if (!reviewId) {
+        document.getElementById("review-title").textContent = "Review Not Found";
+        document.getElementById("review-content").textContent = "Sorry, this review does not exist.";
+        return;
+    }
+
+    try {
+        const response = await fetch(`reviews/${reviewId}.txt`); // Fetch the .txt file
+        if (!response.ok) throw new Error("Review not found");
+
+        const content = await response.text();
+        document.getElementById("review-title").textContent = reviewId.replace("-", " ").toUpperCase();
+        document.getElementById("review-content").textContent = content;
+        document.getElementById("page-title").textContent = reviewId.replace("-", " ") + " - Movie Review";
+    } catch (error) {
+        document.getElementById("review-title").textContent = "Review Not Found";
+        document.getElementById("review-content").textContent = "Sorry, this review does not exist.";
+    }
 }
 
-// ✅ Keep Dynamic Content Secure
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll("[data-secure]").forEach(el => {
-        el.innerHTML = sanitizeInput(el.innerHTML);
-    });
+// Load functions on page load
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById("newFlashing")) {
+        loadReviews();
+    } else {
+        loadReview();
+    }
 });
-
-// Call the function to load reviews when the page loads
-document.addEventListener("DOMContentLoaded", loadReviews);
