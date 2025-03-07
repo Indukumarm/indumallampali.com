@@ -9,30 +9,41 @@ window.addEventListener("scroll", function () {
 });
 
 // Function to Load Movie Reviews List
-async function loadReviews() {
-    const reviews = ["inception", "interstellar", "the-matrix"]; // List of available reviews
-    const newFlashingDiv = document.getElementById("newFlashing");
-    const olderReviewsDiv = document.getElementById("olderReviews");
-    newFlashingDiv.innerHTML = "";
-    olderReviewsDiv.innerHTML = "";
+async function loadReviewList() {
+    const reviewsDiv = document.getElementById("newFlashing");
+    reviewsDiv.innerHTML = ""; // Clear existing content
 
-    reviews.forEach(reviewId => {
-        const link = document.createElement("a");
-        link.href = `review.html?id=${reviewId}`;
-        link.textContent = reviewId.replace("-", " ").toUpperCase(); // Format title nicely
-        link.classList.add("review-link");
+    // GitHub API URL to get the list of files in the `reviews/` folder
+    const repoOwner = "Indukumarrr"; // Replace with your GitHub username
+    const repoName = "indumallampali.com"; // Replace with your repo name
+    const reviewsFolder = "reviews"; // Folder where reviews are stored
+    const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${reviewsFolder}`;
 
-        const paragraph = document.createElement("p");
-        paragraph.appendChild(link);
+    try {
+        const response = await fetch(url);
+        const files = await response.json();
 
-        // Assume first two are new, others are old
-        if (newFlashingDiv.children.length < 2) {
-            newFlashingDiv.appendChild(paragraph);
-        } else {
-            olderReviewsDiv.appendChild(paragraph);
-        }
-    });
+        files.forEach(file => {
+            if (file.name.endsWith(".txt")) {
+                const movieTitle = file.name.replace(".txt", "").replace(/-/g, " ").toUpperCase();
+                const link = document.createElement("a");
+                link.href = `review.html?file=${file.name}`;
+                link.textContent = movieTitle;
+                link.classList.add("review-link");
+
+                const paragraph = document.createElement("p");
+                paragraph.appendChild(link);
+                reviewsDiv.appendChild(paragraph);
+            }
+        });
+
+    } catch (error) {
+        console.error("Error fetching review files:", error);
+    }
 }
+
+// Call function when page loads
+document.addEventListener("DOMContentLoaded", loadReviewList);
 
 // Function to Load Full Review in review.html
 async function loadReview() {
