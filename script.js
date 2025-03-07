@@ -1,4 +1,4 @@
-// Navbar Scroll Effect
+// ✅ Navbar Scroll Effect (Place at the very top)
 window.addEventListener("scroll", function () {
     let navbar = document.querySelector(".navbar");
     if (window.scrollY > 50) {
@@ -8,7 +8,7 @@ window.addEventListener("scroll", function () {
     }
 });
 
-// Function to Load Movie Reviews List
+// ✅ Function to Load Movie Reviews List from GitHub (Place after Navbar function)
 async function loadReviewList() {
     const reviewsDiv = document.getElementById("newFlashing");
     reviewsDiv.innerHTML = ""; // Clear existing content
@@ -42,39 +42,38 @@ async function loadReviewList() {
     }
 }
 
-// Call function when page loads
-document.addEventListener("DOMContentLoaded", loadReviewList);
-
-// Function to Load Full Review in review.html
+// ✅ Function to Load Full Review in `review.html`
 async function loadReview() {
     const urlParams = new URLSearchParams(window.location.search);
-    const reviewId = urlParams.get("id");
+    const fileName = urlParams.get("file");
 
-    if (!reviewId) {
+    if (!fileName || !/^[a-zA-Z0-9-_]+\.txt$/.test(fileName)) {
         document.getElementById("review-title").textContent = "Review Not Found";
         document.getElementById("review-content").textContent = "Sorry, this review does not exist.";
         return;
     }
 
+    const rawFileUrl = `https://raw.githubusercontent.com/Indukumarm/indumallampali.com/main/reviews/${fileName}`;
+
     try {
-        const response = await fetch(`reviews/${reviewId}.txt`); // Fetch the .txt file
+        const response = await fetch(rawFileUrl);
         if (!response.ok) throw new Error("Review not found");
 
         const content = await response.text();
-        document.getElementById("review-title").textContent = reviewId.replace("-", " ").toUpperCase();
+        document.getElementById("review-title").textContent = fileName.replace(".txt", "").replace(/-/g, " ").toUpperCase();
         document.getElementById("review-content").textContent = content;
-        document.getElementById("page-title").textContent = reviewId.replace("-", " ") + " - Movie Review";
+        document.getElementById("page-title").textContent = fileName.replace(".txt", "").replace(/-/g, " ") + " - Movie Review";
     } catch (error) {
         document.getElementById("review-title").textContent = "Review Not Found";
         document.getElementById("review-content").textContent = "Sorry, this review does not exist.";
     }
 }
 
-// Load functions on page load
+// ✅ Run Functions After Page Loads (Final Section of script.js)
 document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("newFlashing")) {
-        loadReviews();
+        loadReviewList();  // Load the movie list on the review page
     } else {
-        loadReview();
+        loadReview();  // Load the full review content on review.html
     }
 });
