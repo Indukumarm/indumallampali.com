@@ -83,6 +83,17 @@ body {
     animation: floatText 1.5s ease-in-out forwards;
 }
 
+/* Floating Text Colors (Each line different) */
+.floating-text:nth-child(1) {
+    color: #FF5733; /* Vibrant Orange */
+}
+.floating-text:nth-child(2) {
+    color: #28A745; /* Green */
+}
+.floating-text:nth-child(3) {
+    color: #007BFF; /* Blue */
+}
+
 /* Add a slight delay to each line for a smooth effect */
 .floating-text:nth-child(2) {
     animation-delay: 0.5s;
@@ -105,6 +116,28 @@ body {
         transform: translateY(0);
     }
 }
+
+/* === Button Styling (Improves Visibility) === */
+.btn-lg {
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px 24px;
+    margin: 10px; /* Adds space between buttons */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-lg:hover {
+    opacity: 0.85;
+    transform: scale(1.05); /* Slight pop effect */
+}
+
+/* Ensure Button Colors Stand Out */
+.btn-lg:nth-child(1) { background-color: #6C5CE7; } /* Purple */
+.btn-lg:nth-child(2) { background-color: #1ABC9C; } /* Green */
+.btn-lg:nth-child(3) { background-color: #E67E22; } /* Orange */
+.btn-lg:nth-child(4) { background-color: #E74C3C; } /* Red */
+.btn-lg:nth-child(5) { background-color: #2C3E50; } /* Dark Blue */
 
 /* === About Me Page Styling === */
 .container h2 {
@@ -156,18 +189,6 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
-}
-
-/* === Custom Button Styling === */
-.btn-lg {
-    font-weight: bold;
-    border-radius: 8px;
-    padding: 12px 24px;
-}
-
-.btn-lg:hover {
-    opacity: 0.8;
-    transition: 0.3s ease-in-out;
 }
 
 /* === Entertainment Page Button Styling === */
