@@ -14,7 +14,7 @@ async function loadReviewList() {
     reviewsDiv.innerHTML = ""; // Clear existing content
 
     // GitHub API URL to get the list of files in the `reviews/` folder
-    const repoOwner = "Indukumarrr"; // Replace with your GitHub username
+    const repoOwner = "Indukumarm"; // Replace with your GitHub username
     const repoName = "indumallampali.com"; // Replace with your repo name
     const reviewsFolder = "reviews"; // Folder where reviews are stored
     const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${reviewsFolder}`;
