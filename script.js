@@ -1,4 +1,4 @@
-// ✅ Navbar Scroll Effect (Place at the very top)
+// ✅ Navbar Scroll Effect (Keeps Navbar Sticky on Scroll)
 window.addEventListener("scroll", function () {
     let navbar = document.querySelector(".navbar");
     if (window.scrollY > 50) {
@@ -8,9 +8,11 @@ window.addEventListener("scroll", function () {
     }
 });
 
-// ✅ Function to Load Movie Reviews List from GitHub (Place after Navbar function)
+// ✅ Function to Load Movie Reviews List from GitHub
 async function loadReviewList() {
     const reviewsDiv = document.getElementById("newFlashing");
+    if (!reviewsDiv) return; // Avoid errors if element doesn't exist
+
     reviewsDiv.innerHTML = ""; // Clear existing content
 
     // GitHub API URL to get the list of files in the `reviews/` folder
@@ -21,16 +23,15 @@ async function loadReviewList() {
 
     try {
         const response = await fetch(url);
-        if (!response.ok) throw new Error("Failed to fetch review files.");
-
         const files = await response.json();
+
+        if (!Array.isArray(files)) throw new Error("Invalid data format received");
 
         files.forEach(file => {
             if (file.name.endsWith(".txt")) {
                 const movieTitle = file.name.replace(".txt", "").replace(/-/g, " ").toUpperCase();
-                const safeFileName = encodeURIComponent(file.name); // Encode filename to prevent URL issues
                 const link = document.createElement("a");
-                link.href = `review.html?file=${safeFileName}`;
+                link.href = `review.html?file=${encodeURIComponent(file.name)}`;
                 link.textContent = movieTitle;
                 link.classList.add("review-link");
 
@@ -48,45 +49,31 @@ async function loadReviewList() {
 // ✅ Function to Load Full Review in `review.html`
 async function loadReview() {
     const urlParams = new URLSearchParams(window.location.search);
-    let fileName = urlParams.get("file");
+    const fileName = urlParams.get("file");
 
-    if (!fileName) {
-        showError("Invalid or missing review file.");
+    if (!fileName || !/^[a-zA-Z0-9-_ ]+\.txt$/.test(fileName)) {
+        document.getElementById("review-title").textContent = "Review Not Found";
+        document.getElementById("review-content").textContent = "Sorry, this review does not exist.";
         return;
     }
 
-    fileName = decodeURIComponent(fileName); // Decode the file name
-    if (!/^[a-zA-Z0-9-_ ]+\.txt$/.test(fileName)) {
-        showError("Invalid file format.");
-        return;
-    }
-
-    const repoOwner = "Indukumarm"; // Your GitHub Username
-    const repoName = "indumallampali.com"; // Your Repository Name
-    const reviewsFolder = "reviews"; // Folder where reviews are stored
-
-    const rawFileUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${reviewsFolder}/${fileName}`;
+    const rawFileUrl = `https://raw.githubusercontent.com/Indukumarm/indumallampali.com/main/reviews/${fileName}`;
 
     try {
         const response = await fetch(rawFileUrl);
-        if (!response.ok) throw new Error("Review not found.");
+        if (!response.ok) throw new Error("Review not found");
 
         const content = await response.text();
         document.getElementById("review-title").textContent = fileName.replace(".txt", "").replace(/-/g, " ").toUpperCase();
-        document.getElementById("review-content").textContent = content;
+        document.getElementById("review-content").innerHTML = `<pre>${content}</pre>`;
         document.getElementById("page-title").textContent = fileName.replace(".txt", "").replace(/-/g, " ") + " - Movie Review";
     } catch (error) {
-        showError("Review not found.");
+        document.getElementById("review-title").textContent = "Review Not Found";
+        document.getElementById("review-content").textContent = "Sorry, this review does not exist.";
     }
 }
 
-// ✅ Function to Show Error Message
-function showError(message) {
-    document.getElementById("review-title").textContent = "Error";
-    document.getElementById("review-content").textContent = message;
-}
-
-// ✅ Run Functions After Page Loads (Final Section of script.js)
+// ✅ Run Functions After Page Loads
 document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("newFlashing")) {
         loadReviewList();  // Load the movie list on the review page
