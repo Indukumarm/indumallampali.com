@@ -6,7 +6,6 @@
     <title id="page-title">Movie Review</title>
     <link href="styles/style-new.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:;">
 </head>
 <body>
 
@@ -29,12 +28,10 @@
     </nav>
 
     <!-- Movie Review Section -->
-    <section class="container my-5">
-        <h1 id="review-title" class="text-center"></h1>
-        <div id="review-content" class="lead p-4 border rounded bg-light"></div>
-        <div class="text-center mt-4">
-            <a href="movie-reviews.html" class="btn btn-primary">⬅ Back to Reviews</a>
-        </div>
+    <section class="container my-5 text-center">
+        <h1 id="review-title"></h1>
+        <div id="review-content" class="lead text-start p-3 border rounded bg-light"></div>
+        <a href="movie-reviews.html" class="btn btn-primary mt-3">⬅ Back to Reviews</a>
     </section>
 
     <!-- Footer -->
@@ -43,34 +40,11 @@
     </footer>
 
     <!-- JavaScript -->
+    <script src="script.js"></script>
     <script>
-        async function loadReview() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const fileName = urlParams.get('file');
-
-    // **Allow Only .txt Files from `reviews/` Folder**
-    if (!fileName || !/^[a-zA-Z0-9-_]+\.txt$/.test(fileName)) {
-        document.getElementById("review-content").textContent = "Invalid review file.";
-        return;
-    }
-
-    // GitHub Raw File URL (Replace with your username & repo)
-    const rawFileUrl = `https://raw.githubusercontent.com/Indukumarm/indumallampali.com/main/reviews/${fileName}`;
-
-    try {
-        const response = await fetch(rawFileUrl);
-        if (!response.ok) throw new Error("File not found.");
-        const text = await response.text();
-
-        document.getElementById("review-title").textContent = fileName.replace(".txt", "").replace(/-/g, " ").toUpperCase();
-        document.getElementById("review-content").innerHTML = text.replace(/\n/g, "<br>");
-    } catch (error) {
-        document.getElementById("review-content").textContent = "Error loading review.";
-    }
-}
-
-document.addEventListener("DOMContentLoaded", loadReview);
+        document.addEventListener("DOMContentLoaded", loadReview);
     </script>
-<script src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
