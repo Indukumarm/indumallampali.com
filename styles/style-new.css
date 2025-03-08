@@ -51,6 +51,7 @@ body {
     text-align: center;
     color: white;
 }
+
 /* Dark Overlay for Readability */
 .hero-banner::before {
     content: "";
@@ -71,86 +72,53 @@ body {
     padding: 20px;
 }
 
-.hero-content h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 15px;
+/* Floating Animated Text with Different Colors */
+.floating-text:nth-child(1) { color: #FF5733; } /* Vibrant Orange */
+.floating-text:nth-child(2) { color: #28A745; } /* Green */
+.floating-text:nth-child(3) { color: #FFD700; } /* Gold */
+.floating-text:nth-child(4) { color: #17A2B8; } /* Teal */
+.floating-text:nth-child(5) { color: #E74C3C; } /* Red */
+
+/* Floating Animation */
+@keyframes floatText {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Floating Animated Text */
-/* Floating Text Colors (Each line a different color) */
-.floating-text:nth-child(1) {
-    color: #FF5733; /* Vibrant Orange */
-}
-.floating-text:nth-child(2) {
-    color: #28A745; /* Green */
-}
-.floating-text:nth-child(3) {
-    color: #FFD700; /* Gold */
-}
-.floating-text:nth-child(4) {
-    color: #17A2B8; /* Teal */
-}
-.floating-text:nth-child(5) {
-    color: #E74C3C; /* Red */
+.floating-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    opacity: 0;
+    animation: floatText 1.5s ease-in-out forwards;
 }
 
-/* Fix Button Visibility (Better Contrast) */
+.floating-text:nth-child(2) { animation-delay: 0.5s; }
+.floating-text:nth-child(3) { animation-delay: 1s; }
+.floating-text:nth-child(4) { animation-delay: 1.5s; }
+.floating-text:nth-child(5) { animation-delay: 2s; }
+
+/* === Fix Button Visibility (Better Contrast) === */
 .btn-lg {
     font-weight: bold;
     border-radius: 8px;
     padding: 12px 24px;
     margin: 10px;
-    color: white !important; /* Ensure text is white */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    color: white !important;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease-in-out;
 }
 
 .btn-lg:hover {
     opacity: 0.85;
-    transform: scale(1.05); /* Slight pop effect */
+    transform: scale(1.05);
 }
 
-/* Ensure Buttons Stand Out More */
-.btn-lg:nth-child(1) { background-color: #6C5CE7; } /* Purple */
-.btn-lg:nth-child(2) { background-color: #1ABC9C; } /* Green */
-.btn-lg:nth-child(3) { background-color: #E67E22; } /* Orange */
-.btn-lg:nth-child(4) { background-color: #E74C3C; } /* Red */
-.btn-lg:nth-child(5) { background-color: #2C3E50; } /* Dark Blue */
-
-/* Keyframe for Floating Animation */
-@keyframes floatText {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* === Button Styling (Improves Visibility) === */
-.btn-lg {
-    font-weight: bold;
-    border-radius: 8px;
-    padding: 12px 24px;
-    margin: 10px; /* Adds space between buttons */
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-    transition: all 0.3s ease-in-out;
-}
-
-.btn-lg:hover {
-    opacity: 0.85;
-    transform: scale(1.05); /* Slight pop effect */
-}
-
-/* Ensure Button Colors Stand Out */
-.btn-lg:nth-child(1) { background-color: #6C5CE7; } /* Purple */
-.btn-lg:nth-child(2) { background-color: #1ABC9C; } /* Green */
-.btn-lg:nth-child(3) { background-color: #E67E22; } /* Orange */
-.btn-lg:nth-child(4) { background-color: #E74C3C; } /* Red */
-.btn-lg:nth-child(5) { background-color: #2C3E50; } /* Dark Blue */
+/* Updated Button Colors */
+.btn-about { background-color: #6C5CE7 !important; }
+.btn-services { background-color: #1ABC9C !important; }
+.btn-work { background-color: #E67E22 !important; }
+.btn-entertainment { background-color: #E74C3C !important; }
+.btn-contact { background-color: #2C3E50 !important; }
 
 /* === About Me Page Styling === */
 .container h2 {
@@ -159,7 +127,7 @@ body {
 }
 
 .container img {
-    border-radius: 10px; /* Adds slight rounding but keeps it rectangular */
+    border-radius: 10px;
     max-width: 100%;
     height: auto;
 }
@@ -213,7 +181,7 @@ footer a:hover {
 
 /* === Fix Entertainment Page Button Alignment === */
 .custom-btn {
-    width: 220px; /* Ensures both buttons have the same width */
+    width: 220px;
     padding: 12px 20px;
     font-size: 1.2rem;
     text-align: center;
@@ -221,15 +189,9 @@ footer a:hover {
 
 /* === Mobile Optimization === */
 @media (max-width: 768px) {
-    .hero-banner {
-        height: 70vh;
-    }
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-    .hero-content p {
-        font-size: 1rem;
-    }
+    .hero-banner { height: 70vh; }
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content p { font-size: 1rem; }
 }
 
 /* === Flashing Effect for New Reviews === */
@@ -251,12 +213,12 @@ footer a:hover {
 }
 
 .new-review a {
-    color: #ff4500; /* Bright Orange */
+    color: #ff4500;
     font-weight: bold;
 }
 
 .old-review a {
-    color: #007bff; /* Nice blue */
+    color: #007bff;
     text-decoration: underline;
 }
 
@@ -271,7 +233,7 @@ footer a:hover {
 }
 
 .review-title:hover {
-    color: #ff4500; /* Bright orange on hover */
+    color: #ff4500;
 }
 
 /* === Hidden Review Content === */
