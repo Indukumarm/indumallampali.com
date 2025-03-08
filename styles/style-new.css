@@ -76,14 +76,7 @@ body {
 }
 
 /* Floating Animated Text */
-.floating-text {
-    font-size: 1.2rem;
-    font-weight: 500;
-    opacity: 0;
-    animation: floatText 1.5s ease-in-out forwards;
-}
-
-/* Floating Text Colors (Each line different) */
+/* Floating Text Colors (Each line a different color) */
 .floating-text:nth-child(1) {
     color: #FF5733; /* Vibrant Orange */
 }
@@ -91,19 +84,37 @@ body {
     color: #28A745; /* Green */
 }
 .floating-text:nth-child(3) {
-    color: #007BFF; /* Blue */
-}
-
-/* Add a slight delay to each line for a smooth effect */
-.floating-text:nth-child(2) {
-    animation-delay: 0.5s;
-}
-.floating-text:nth-child(3) {
-    animation-delay: 1s;
+    color: #FFD700; /* Gold */
 }
 .floating-text:nth-child(4) {
-    animation-delay: 1.5s;
+    color: #17A2B8; /* Teal */
 }
+.floating-text:nth-child(5) {
+    color: #E74C3C; /* Red */
+}
+
+/* Fix Button Visibility (Better Contrast) */
+.btn-lg {
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px 24px;
+    margin: 10px;
+    color: white !important; /* Ensure text is white */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-lg:hover {
+    opacity: 0.85;
+    transform: scale(1.05); /* Slight pop effect */
+}
+
+/* Ensure Buttons Stand Out More */
+.btn-lg:nth-child(1) { background-color: #6C5CE7; } /* Purple */
+.btn-lg:nth-child(2) { background-color: #1ABC9C; } /* Green */
+.btn-lg:nth-child(3) { background-color: #E67E22; } /* Orange */
+.btn-lg:nth-child(4) { background-color: #E74C3C; } /* Red */
+.btn-lg:nth-child(5) { background-color: #2C3E50; } /* Dark Blue */
 
 /* Keyframe for Floating Animation */
 @keyframes floatText {
