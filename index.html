@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Indukumar | Screenplays & Blog</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Load model-viewer for 3D logo -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Site Header -->
   <header class="site-header">
     <div class="nav-container">
       <a href="/" class="logo">Indu Mallampali</a>
+
+      <!-- 3D Logo -->
       <div class="logo-3d">
         <model-viewer 
           src="images/IM%203D%20LOGO.gltf" 
@@ -25,6 +28,7 @@
           style="width: 60px; height: 60px;">
         </model-viewer>
       </div>
+
       <nav class="main-nav">
         <a href="#video">Video</a>
         <a href="#visuals">Visuals</a>
@@ -34,19 +38,19 @@
     </div>
   </header>
 
-  <!-- HERO VIDEO SECTION -->
-  <section id="video" class="hero-video">
+  <!-- Hero Full-Width Video Section -->
+  <section class="hero-video" id="video">
     <video autoplay muted loop playsinline>
-      <source src="https://raw.githubusercontent.com/Indukumarm/indumallampali.com/4c15d6a984a31caffb0bfd7e80d284d5d8f10752/images/Personal%20Website%20video.mp4" type="video/mp4" />
+      <source src="https://cdn.jsdelivr.net/gh/Indukumarm/indumallampali.com@main/images/Personal%20Website%20video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   </section>
 
-  <!-- Visuals Collection -->
-  <section id="visuals" class="fade-in">
+  <!-- Visuals Section -->
+  <section id="visuals">
     <div class="container">
       <h2>Visuals Collection</h2>
-      <div class="grid">
+      <div class="image-grid">
         <img src="images/gallery1.jpg" alt="Gallery Image 1" />
         <img src="images/gallery2.jpg" alt="Gallery Image 2" />
         <img src="images/gallery3.jpg" alt="Gallery Image 3" />
@@ -55,11 +59,11 @@
     </div>
   </section>
 
-  <!-- Behind the Scenes -->
-  <section id="bts" class="fade-in">
+  <!-- Behind the Scenes Section -->
+  <section id="bts">
     <div class="container">
       <h2>Behind the Scenes</h2>
-      <div class="grid">
+      <div class="image-grid">
         <img src="images/bts1.jpg" alt="Behind the Scenes 1" />
         <img src="images/bts2.jpg" alt="Behind the Scenes 2" />
         <img src="images/bts3.jpg" alt="Behind the Scenes 3" />
@@ -67,7 +71,7 @@
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- Contact Section -->
   <section id="contact">
     <div class="container">
       <h2>Contact Me</h2>
@@ -77,18 +81,16 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-links">
-        <a href="#video">Video</a>
-        <a href="#visuals">Visuals</a>
-        <a href="#bts">BTS</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer-contact">
-        <a href="#contact" class="contact-btn">Contact Me</a>
-      </div>
-      <p>&copy; 2025 Indukumar. All rights reserved.</p>
+    <div class="footer-nav">
+      <a href="#video">Video</a>
+      <a href="#visuals">Visuals</a>
+      <a href="#bts">BTS</a>
+      <a href="#contact">Contact</a>
     </div>
+    <div class="footer-contact">
+      <a href="mailto:you@example.com" class="footer-button">Contact Me</a>
+    </div>
+    <p>&copy; 2025 Indukumar. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
