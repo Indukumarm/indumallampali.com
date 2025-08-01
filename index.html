@@ -5,15 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Indukumar | Screenplays & Blog</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Load model-viewer for 3D logo -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-  <header class="hero">
-    <div class="content">
-      <h1>Indukumar</h1>
-      <p>Writer | Storyteller | Blogger</p>
+
+  <!-- New site header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <!-- Left: Name -->
+      <a href="/" class="logo">Indu Mallampali</a>
+
+      <!-- Center: 3D spinning logo -->
+      <div class="logo-3d">
+        <model-viewer 
+          src="https://yourdomain.com/path-to-logo.glb" 
+          alt="3D Logo"
+          auto-rotate 
+          rotation-per-second="30deg"
+          camera-controls 
+          disable-zoom 
+          interaction-prompt="none" 
+          style="width: 80px; height: 80px;">
+        </model-viewer>
+      </div>
+
+      <!-- Right: Navigation -->
+      <nav class="main-nav">
+        <a href="#about">About</a>
+        <a href="#portfolio">Work</a>
+        <a href="#videos">Videos</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
+  <!-- Main Sections -->
   <section id="about">
     <div class="container">
       <h2>About Me</h2>
