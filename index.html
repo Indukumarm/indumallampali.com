@@ -2,33 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Indukumar | Screenplays & Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Indu Mallampali</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Load model-viewer for 3D logo -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
 
-  <!-- Site Header -->
+  <!-- Header -->
   <header class="site-header">
     <div class="nav-container">
-      <a href="/" class="logo">Indu Mallampali</a>
-
-      <!-- 3D Logo -->
+      <a href="index.html" class="logo">Indu Mallampali</a>
       <div class="logo-3d">
         <model-viewer 
-          src="images/IM%203D%20LOGO.gltf" 
-          alt="3D Logo"
+          src="images/logo.glb" 
+          alt="3D Logo" 
           auto-rotate 
-          rotation-per-second="30deg"
           camera-controls 
           disable-zoom 
-          interaction-prompt="none" 
-          style="width: 60px; height: 60px;">
+          style="width: 50px; height: 50px;">
         </model-viewer>
       </div>
-
       <nav class="main-nav">
         <a href="#video">Video</a>
         <a href="#visuals">Visuals</a>
@@ -38,7 +32,7 @@
     </div>
   </header>
 
-  <!-- Hero Full-Width Video Section -->
+  <!-- Hero Video -->
   <section class="hero-video" id="video">
     <video autoplay muted loop playsinline>
       <source src="https://cdn.jsdelivr.net/gh/Indukumarm/indumallampali.com@main/images/Personal%20Website%20video.mp4" type="video/mp4" />
@@ -75,7 +69,7 @@
   <section id="contact">
     <div class="container">
       <h2>Contact Me</h2>
-      <p>Reach out via <a href="mailto:you@example.com">email</a> or connect on social media.</p>
+      <p>Reach out via email or connect on social media.</p>
     </div>
   </section>
 
@@ -93,6 +87,18 @@
     <p>&copy; 2025 Indukumar. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Optional Script for Section Fade-In -->
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    });
+    document.querySelectorAll("section").forEach(sec => {
+      observer.observe(sec);
+    });
+  </script>
 </body>
 </html>
