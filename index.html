@@ -5,18 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Indukumar | Screenplays & Blog</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Load model-viewer for 3D logo -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
 
-  <!-- Site Header -->
+  <!-- Header -->
   <header class="site-header">
     <div class="nav-container">
-      <!-- Left: Brand Name -->
       <a href="/" class="logo">Indu Mallampali</a>
-
-      <!-- Center: 3D Logo -->
       <div class="logo-3d">
         <model-viewer 
           src="images/IM%203D%20LOGO.gltf" 
@@ -29,43 +25,45 @@
           style="width: 60px; height: 60px;">
         </model-viewer>
       </div>
-
-      <!-- Right: Navigation -->
       <nav class="main-nav">
-        <a href="#gallery-video">Video</a>
-        <a href="#gallery-one">Visuals</a>
-        <a href="#gallery-two">BTS</a>
-        <a href="#blog">Blog</a>
+        <a href="#video">Video</a>
+        <a href="#visuals">Visuals</a>
+        <a href="#bts">BTS</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Video Section -->
-<section class="hero-video">
-  <video autoplay muted loop playsinline>
-    <source src="https://raw.githubusercontent.com/Indukumarm/indumallampali.com/main/images/Personal%20Website%20video.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-</section>
-  <!-- Image Grid One -->
-  <section id="gallery-one">
+  <!-- HERO VIDEO SECTION -->
+  <section id="video" class="hero-video">
+    <video autoplay muted loop playsinline>
+      <source src="https://raw.githubusercontent.com/Indukumarm/indumallampali.com/4c15d6a984a31caffb0bfd7e80d284d5d8f10752/images/Personal%20Website%20video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay">
+      <h1>Indu Mallampali</h1>
+      <p>Writer | Storyteller | Visual Artist</p>
+    </div>
+  </section>
+
+  <!-- Visuals Collection -->
+  <section id="visuals" class="fade-in">
     <div class="container">
       <h2>Visuals Collection</h2>
-      <div class="image-grid">
-        <img src="images/img1.jpg" alt="Gallery Image 1" />
-        <img src="images/img2.jpg" alt="Gallery Image 2" />
-        <img src="images/img3.jpg" alt="Gallery Image 3" />
-        <img src="images/img4.jpg" alt="Gallery Image 4" />
+      <div class="grid">
+        <img src="images/gallery1.jpg" alt="Gallery Image 1" />
+        <img src="images/gallery2.jpg" alt="Gallery Image 2" />
+        <img src="images/gallery3.jpg" alt="Gallery Image 3" />
+        <img src="images/gallery4.jpg" alt="Gallery Image 4" />
       </div>
     </div>
   </section>
 
-  <!-- Image Grid Two -->
-  <section id="gallery-two">
+  <!-- Behind the Scenes -->
+  <section id="bts" class="fade-in">
     <div class="container">
       <h2>Behind the Scenes</h2>
-      <div class="image-grid">
+      <div class="grid">
         <img src="images/bts1.jpg" alt="Behind the Scenes 1" />
         <img src="images/bts2.jpg" alt="Behind the Scenes 2" />
         <img src="images/bts3.jpg" alt="Behind the Scenes 3" />
@@ -73,26 +71,7 @@
     </div>
   </section>
 
-  <!-- Logs Section -->
-  <section id="logs">
-    <div class="container">
-      <h2>Logs & Updates</h2>
-      <ul class="logs">
-        <li><strong>July 2025:</strong> Started writing a new rural suspense thriller.</li>
-        <li><strong>June 2025:</strong> Completed editing for "Sideways" screenplay.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Blog Section -->
-  <section id="blog">
-    <div class="container">
-      <h2>Blog</h2>
-      <p>Coming soon: Thoughtful takes on life, art, and storytelling.</p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section id="contact">
     <div class="container">
       <h2>Contact Me</h2>
@@ -101,8 +80,19 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Indukumar. All rights reserved.</p>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="#video">Video</a>
+        <a href="#visuals">Visuals</a>
+        <a href="#bts">BTS</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-contact">
+        <a href="#contact" class="contact-btn">Contact Me</a>
+      </div>
+      <p>&copy; 2025 Indukumar. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
