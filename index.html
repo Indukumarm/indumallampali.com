@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Indu Mallampali</title>
-  <link rel="stylesheet" href="style.css" />
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="stylesheet" href="style.css"/>
+  <script defer src="script.js"></script>
 </head>
 <body>
 
@@ -14,14 +14,7 @@
     <div class="nav-container">
       <a href="index.html" class="logo">Indu Mallampali</a>
       <div class="logo-3d">
-        <model-viewer 
-          src="images/logo.glb" 
-          alt="3D Logo" 
-          auto-rotate 
-          camera-controls 
-          disable-zoom 
-          style="width: 50px; height: 50px;">
-        </model-viewer>
+        <model-viewer src="logo.glb" alt="3D Logo" auto-rotate camera-controls style="width: 40px; height: 40px;"></model-viewer>
       </div>
       <nav class="main-nav">
         <a href="#video">Video</a>
@@ -32,17 +25,18 @@
     </div>
   </header>
 
-  <!-- Hero Video -->
+  <!-- Hero Video Section -->
   <section class="hero-video" id="video">
     <video autoplay muted loop playsinline>
-      <source src="https://cdn.jsdelivr.net/gh/Indukumarm/indumallampali.com@main/images/Personal%20Website%20video.mp4" type="video/mp4" />
+      <source src="https://github.com/Indukumarm/indumallampali.com/raw/4c15d6a984a31caffb0bfd7e80d284d5d8f10752/images/Personal%20Website%20video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   </section>
 
-  <!-- Visuals Section -->
-  <section id="visuals">
-    <div class="container">
+  <!-- Content Sections Scrollable -->
+  <div class="content-sections">
+
+    <section id="visuals">
       <h2>Visuals Collection</h2>
       <div class="image-grid">
         <img src="images/gallery1.jpg" alt="Gallery Image 1" />
@@ -50,56 +44,37 @@
         <img src="images/gallery3.jpg" alt="Gallery Image 3" />
         <img src="images/gallery4.jpg" alt="Gallery Image 4" />
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Behind the Scenes Section -->
-  <section id="bts">
-    <div class="container">
+    <section id="bts">
       <h2>Behind the Scenes</h2>
       <div class="image-grid">
         <img src="images/bts1.jpg" alt="Behind the Scenes 1" />
         <img src="images/bts2.jpg" alt="Behind the Scenes 2" />
         <img src="images/bts3.jpg" alt="Behind the Scenes 3" />
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
+    <section id="contact">
       <h2>Contact Me</h2>
       <p>Reach out via email or connect on social media.</p>
-    </div>
-  </section>
+    </section>
+
+  </div>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-nav">
+  <footer>
+    <div class="footer-links">
       <a href="#video">Video</a>
       <a href="#visuals">Visuals</a>
       <a href="#bts">BTS</a>
       <a href="#contact">Contact</a>
     </div>
-    <div class="footer-contact">
-      <a href="mailto:you@example.com" class="footer-button">Contact Me</a>
-    </div>
-    <p>&copy; 2025 Indukumar. All rights reserved.</p>
+    <button onclick="location.href='#contact'">Contact Me</button>
+    <p style="margin-top: 20px;">© 2025 Indukumar. All rights reserved.</p>
   </footer>
 
-  <!-- Optional Script for Section Fade-In -->
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-        }
-      });
-    });
-    document.querySelectorAll("section").forEach(sec => {
-      observer.observe(sec);
-    });
-  </script>
-  <script src="script.js"></script>
+  <!-- 3D Model Viewer Script -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </body>
 </html>
